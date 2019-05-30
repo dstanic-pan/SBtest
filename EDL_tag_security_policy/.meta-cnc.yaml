@@ -39,12 +39,20 @@ variables:
     description: EDL url
     default: my_default_url
     type_hint: text
+  - name: tag_name
+    description: Tag name
+    default: Tag
+    type_hint: text
+  - name: tag_description
+    description: Tag description
+    default: Tag
+    type_hint: text
   - name: tag_color
     description: Tag color
     default: red
     type_hint: dropdown
     dd_list:
-      - key: bluea
+      - key: blue
         value: color3
       - key: orange
         value: color6
