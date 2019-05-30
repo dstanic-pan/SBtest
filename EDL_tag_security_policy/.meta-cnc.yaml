@@ -1,0 +1,69 @@
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: DStanic-Skillet-name
+# label used for menu selection
+label: my_skillet_label
+description: this is what my skillet does
+
+# type of device configuration
+# common types are panorama, panos, and template
+# https://github.com/PaloAltoNetworks/panhandler/blob/develop/docs/metadata_configuration.rst
+type: panos
+# preload static or default-based templates
+extends:
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  collection:
+    - My-Collection
+
+# ---------------------------------------------------------------------
+# end of preamble section
+
+# variables section
+# ---------------------------------------------------------------------
+# variables used in the configuration templates
+# type_hint defines the form field used by panhandler
+# type_hints can be text, ip_address, or dropdown
+variables:
+  - name: edl_name
+    description: EDL name
+    default: my_edl
+    type_hint: text
+  - name: edl_description
+    description: EDL description
+    default: my_description
+    type_hint: text
+  - name: edl_url
+    description: EDL url
+    default: my_default_url
+    type_hint: text
+  - name: tag_color
+    description: Tag color
+    default: red
+    type_hint: dropdown
+    dd_list:
+      - key: bluea
+        value: color3
+      - key: orange
+        value: color6
+# ---------------------------------------------------------------------
+# end of variables section
+
+# snippets section
+# ---------------------------------------------------------------------
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
+snippets:
+  - name: edl
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/external-list
+    file: edl.xml
+  - name: tag
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/tag
+    file: tag.xml
+  - name: security_rules
+    xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/security/rules
+    file: security_rules.xml
+# ---------------------------------------------------------------------
+# end of snippets section
